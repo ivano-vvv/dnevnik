@@ -6,7 +6,7 @@ namespace UsersServer.Infrastructure.AppDatabase;
 
 public class AppDbContext : DbContext
 {
-    public AppDbContext(DbContextOptions opt) : base(opt) {}
+    public AppDbContext(DbContextOptions<AppDbContext> opt) : base(opt) {}
 
     public DbSet<AuthProfile> AuthProfiles { get; set; }
 

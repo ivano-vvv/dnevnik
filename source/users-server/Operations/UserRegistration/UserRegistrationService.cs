@@ -13,7 +13,7 @@ public class UserRegistrationService : IUsersRegistrationService
         _authRepo = authRepo;
     }
 
-    public async Task<AuthProfile> register(CreateUserView user)
+    public async Task<SessionTokens> register(CreateUserView user)
     {
         if (_authRepo.isLoginUnique(user.Credentials.Login) == false)
         {

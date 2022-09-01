@@ -5,5 +5,5 @@ namespace UsersServer.Controllers.Dependencies;
 
 public interface IUsersRegistrationService
 {
-    public Task<AuthProfile> register(CreateUserView user);
+    public Task<SessionTokens> register(CreateUserView user);
 }

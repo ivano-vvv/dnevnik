@@ -6,5 +6,6 @@ services:
       - "8080:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ACCESS_TOKEN_KEY=0123456789qwertyuiopasdfghjklzxcvbnm
     volumes:
       - ../source/users-server:/app/out

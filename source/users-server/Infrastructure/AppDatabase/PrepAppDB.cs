@@ -2,7 +2,7 @@ using UsersServer.Domain.Auth;
 
 namespace UsersServer.Infrastructure.AppDatabase;
 
-public static class PrepDB
+public static class PrepAppDB
 {
     private static readonly List<AuthProfile> DEFAULT_AUTH_PROFILES = new List<AuthProfile>();
 
@@ -25,5 +25,7 @@ public static class PrepDB
                 context.AuthProfiles.Add(profile);
             }
         }
+
+        context.SaveChanges();
     }
 }

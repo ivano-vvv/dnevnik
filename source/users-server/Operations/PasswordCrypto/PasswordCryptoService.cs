@@ -17,4 +17,13 @@ public class PasswordCryptoService : IPasswordCryptoService
             return new PasswordEncodingResult(salt, hash);
         }
     }
+
+    public bool verify(string password, byte[] salt, byte[] hash)
+    {
+        using(var hmac = new HMACSHA512(salt))
+        {
+            var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            return computedHash.SequenceEqual(hash);
+        }
+    }
 }

@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using UsersServer.Controllers.Dependencies;
 using UsersServer.Domain.Auth;
+using UsersServer.Domain.Auth.Models;
+using UsersServer.Domain.Auth.Models.Exceptions;
+using UsersServer.Domain.Auth.Repositories;
 using UsersServer.Operations.UsersRegistration; // TODO remove dependency
 
 namespace UsersServer.Controllers;
@@ -11,13 +14,17 @@ namespace UsersServer.Controllers;
 public class AuthController : ControllerBase 
 {
     private readonly IUsersRegistrationService _registrationService;
+    private readonly AuthProfilesRepository _authRepo;
 
-    public AuthController(IUsersRegistrationService registrationService)
+    public AuthController(
+        IUsersRegistrationService registrationService,
+        AuthProfilesRepository authRepo)
     {
         _registrationService = registrationService;
+        _authRepo = authRepo;
     }
     
-    [HttpPost]
+    [HttpPost("sign-up")]
     public async Task<ActionResult<AuthProfile>> create(CreateUserView user)
     {
         try
@@ -28,6 +35,20 @@ public class AuthController : ControllerBase
         catch (UserExistsException e)
         {
             return BadRequest(e.Message);
+        }
+    }
+
+    [HttpPost("sign-in")]
+    public async Task<ActionResult<string>> getAccessToken(Credentials credentials)
+    {
+        try
+        {
+            var tokens = await _authRepo.getSessionsTokens(credentials);
+            return Ok(tokens);
+        }
+        catch (InvalidCredentialsException e)
+        {
+            return Unauthorized(e.Message);
         }
     }
 }

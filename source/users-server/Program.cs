@@ -11,11 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMemory"));
+builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("App:InMemory"));
 
 // domain
 builder.Services.AddScoped<UsersRepository>();
 builder.Services.AddScoped<AuthProfilesRepository>();
+builder.Services.AddScoped<SessionTokensRepository>();
 
 // operations
 builder.Services.AddScoped<IUsersRegistrationService, UserRegistrationService>();
@@ -45,6 +46,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-PrepDB.PrepPopulation(app);
+PrepAppDB.PrepPopulation(app);
 
 app.Run();
