@@ -5,12 +5,12 @@
             // Use IntelliSense to find out which attributes exist for C# debugging
             // Use hover for the description of the existing attributes
             // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-            "name": ".NET Core Launch (web)",
+            "name": "UsersServer Launch (web)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build__users",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/source/users-server/bin/Debug/net6.0/users-server.dll",
+            "program": "${workspaceFolder}/source/users-server/bin/Debug/net6.0/UsersServer.dll",
             "args": [],
             "cwd": "${workspaceFolder}/source/users-server",
             "stopAtEntry": false,
