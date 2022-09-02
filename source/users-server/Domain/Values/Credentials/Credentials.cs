@@ -1,4 +1,4 @@
-namespace UsersServer.Domain.Auth.Models;
+namespace UsersServer.Domain.Values.Credentials;
 
 public class Credentials
 {

@@ -1,4 +1,4 @@
-namespace UsersServer.Domain.Auth.Models.Exceptions;
+namespace UsersServer.Domain.Values.Credentials;
 
 public class InvalidCredentialsException : Exception {
     public InvalidCredentialsException (string login)

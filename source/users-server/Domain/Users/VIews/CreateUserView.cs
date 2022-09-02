@@ -1,6 +1,6 @@
-using UsersServer.Domain.Auth.Models;
+using UsersServer.Domain.Values.Credentials;
 
-namespace UsersServer.Operations.UsersRegistration;
+namespace UsersServer.Domain.Users.Views;
 
 public class CreateUserView
 {

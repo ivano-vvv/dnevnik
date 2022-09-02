@@ -1,7 +1,7 @@
 using UsersServer.Infrastructure.AppDatabase;
-using UsersServer.Domain.Auth.Models;
 using UsersServer.Domain.Auth.Dependencies;
-using UsersServer.Domain.Auth.Models.Exceptions;
+using UsersServer.Domain.Values.Credentials;
+using UsersServer.Domain.Users;
 
 namespace UsersServer.Domain.Auth.Repositories;
 
@@ -23,13 +23,14 @@ public class AuthProfilesRepository
 
     public bool isLoginUnique(string login)
     {
-        return _dbContext.Find<AuthProfile>(login) == null;
+        var existingUser = _dbContext.AuthProfiles.FirstOrDefault(profile => profile.Login == login);
+        return existingUser == null;
     }
 
-    public async Task<SessionTokens> create(Credentials credentials)
+    public async Task<SessionTokens> create(User user, Credentials credentials)
     {
         var encodedPassword = _cryptoService.encode(credentials.Password);
-        var profile = new AuthProfile(credentials.Login, encodedPassword.Salt, encodedPassword.Hash);
+        var profile = AuthProfile.fromUser(user, encodedPassword.Salt, encodedPassword.Hash);
 
         await _dbContext.AuthProfiles.AddAsync(profile);
         await saveChanges();

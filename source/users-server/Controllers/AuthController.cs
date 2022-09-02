@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using UsersServer.Controllers.Dependencies;
 using UsersServer.Domain.Auth;
-using UsersServer.Domain.Auth.Models;
-using UsersServer.Domain.Auth.Models.Exceptions;
 using UsersServer.Domain.Auth.Repositories;
-using UsersServer.Operations.UsersRegistration; // TODO remove dependency
+using UsersServer.Domain.Users.Repositories;
+using UsersServer.Domain.Users.Utils.Exceptions;
+using UsersServer.Domain.Users.Views;
+using UsersServer.Domain.Values.Credentials;
 
 namespace UsersServer.Controllers;
 
@@ -13,15 +13,13 @@ namespace UsersServer.Controllers;
 [ApiController]
 public class AuthController : ControllerBase 
 {
-    private readonly IUsersRegistrationService _registrationService;
     private readonly AuthProfilesRepository _authRepo;
+    private readonly UsersRepository _usersRepo;
 
-    public AuthController(
-        IUsersRegistrationService registrationService,
-        AuthProfilesRepository authRepo)
+    public AuthController(AuthProfilesRepository authRepo, UsersRepository usersRepo)
     {
-        _registrationService = registrationService;
         _authRepo = authRepo;
+        _usersRepo = usersRepo;
     }
     
     [HttpPost("sign-up")]
@@ -29,12 +27,17 @@ public class AuthController : ControllerBase
     {
         try
         {
-            var result = await _registrationService.register(user);
+            var result = await _usersRepo.create(user);
             return Ok(result);
         }
         catch (UserExistsException e)
         {
             return BadRequest(e.Message);
+        }
+        catch (Exception e)
+        {
+            // TODO log error
+            return StatusCode(500);
         }
     }
 
@@ -49,6 +52,11 @@ public class AuthController : ControllerBase
         catch (InvalidCredentialsException e)
         {
             return Unauthorized(e.Message);
+        }
+        catch (Exception e)
+        {
+            // TODO log error
+            return StatusCode(500);
         }
     }
 }

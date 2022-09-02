@@ -15,7 +15,6 @@ public class User {
     [Required]
     public Guid Id { get; set; }
 
-    [Key]
     [Required]
     public string Login { get; set; }
 

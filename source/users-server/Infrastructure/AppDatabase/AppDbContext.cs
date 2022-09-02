@@ -11,10 +11,4 @@ public class AppDbContext : DbContext
     public DbSet<AuthProfile> AuthProfiles { get; set; }
 
     public DbSet<User> Users { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder builder)
-    {
-        builder.Entity<User>().HasKey(u => new { u.Id, u.Login });
-        base.OnModelCreating(builder);
-    }
 }

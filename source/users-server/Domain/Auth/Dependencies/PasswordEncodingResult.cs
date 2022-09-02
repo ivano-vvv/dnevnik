@@ -1,4 +1,4 @@
-namespace UsersServer.Domain.Auth.Models;
+namespace UsersServer.Domain.Auth.Dependencies;
 
 public class PasswordEncodingResult
 {

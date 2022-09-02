@@ -1,7 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
 using UsersServer.Domain.Auth.Dependencies;
-using UsersServer.Domain.Auth.Models;
 
 namespace UsersServer.Operations.PasswordCrypto;
 

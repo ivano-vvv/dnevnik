@@ -23,7 +23,7 @@ public class SessionTokensRepository
     {
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Authentication, profile.Login),
+            new Claim("UserId", profile.UserId.ToString()),
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_accessTokenKey));
