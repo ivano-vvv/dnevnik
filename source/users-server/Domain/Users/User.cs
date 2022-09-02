@@ -5,6 +5,7 @@ namespace UsersServer.Domain.Users;
 public class User {
     public User(string Login, string Name = "")
     {
+        // TODO consider storing Id as a string
         this.Id = Guid.NewGuid();
 
         this.Login = Login;

@@ -11,4 +11,7 @@ public class AppDbContext : DbContext
     public DbSet<AuthProfile> AuthProfiles { get; set; }
 
     public DbSet<User> Users { get; set; }
+
+    // TODO store in redis
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
 }

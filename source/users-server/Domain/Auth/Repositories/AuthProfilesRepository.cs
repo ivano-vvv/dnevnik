@@ -35,7 +35,7 @@ public class AuthProfilesRepository
         await _dbContext.AuthProfiles.AddAsync(profile);
         await saveChanges();
 
-        return _tokensRepo.get(profile);
+        return _tokensRepo.get(profile.UserId.ToString());
     }
 
     public async Task<SessionTokens> getSessionsTokens(Credentials credentials)
@@ -52,7 +52,7 @@ public class AuthProfilesRepository
             throw new InvalidCredentialsException(credentials.Login);
         }
 
-        return _tokensRepo.get(profile);
+        return _tokensRepo.get(profile.UserId.ToString());
     }
 
     private async Task<bool> saveChanges()

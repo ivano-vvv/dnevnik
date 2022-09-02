@@ -18,6 +18,7 @@ public class AuthProfile
         this.PasswordHash = PasswordHash;
     }
 
+    // TODO maybe we should have a separated <id - login> dict, since we use the login as a key
     [Required]
     public Guid UserId { get; set; }
 
