@@ -14,7 +14,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("App:InMemory"));
+var inMemDb = builder.Configuration.GetValue<bool>("IN_MEM_DB") == true;
+
+if (inMemDb)
+{
+    builder.Services
+        .AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("App:InMemory"));
+}
+else
+{
+    builder.Services
+        .AddDbContext<AppDbContext>(opt => opt.UseNpgsql(
+            builder.Configuration.GetConnectionString("UsersDb")
+        ));
+
+    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+}
 
 builder.Services.AddSwaggerGen(options => {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme

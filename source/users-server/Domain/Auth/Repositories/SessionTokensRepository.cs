@@ -131,7 +131,7 @@ public class SessionTokensRepository
         }
         else
         {
-            _dbContext.RefreshTokens.Add(token);
+            await _dbContext.RefreshTokens.AddAsync(token);
         }
 
         await saveDbChanges();

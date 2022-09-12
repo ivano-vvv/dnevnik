@@ -17,7 +17,6 @@ public class AuthController : ControllerBase
     private readonly AuthProfilesRepository _authRepo;
     private readonly UsersRepository _usersRepo;
     private readonly SessionTokensRepository _tokensRepo;
-    private readonly IHttpContextAccessor _httpAccessor;
 
     public AuthController(
         AuthProfilesRepository authRepo,

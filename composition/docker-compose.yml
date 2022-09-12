@@ -1,5 +1,7 @@
 version: "3.9"
+
 services:
+  
   users-server:
     build: ../source/users-server
     ports:
@@ -7,5 +9,23 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ACCESS_TOKEN_KEY=0123456789qwertyuiopasdfghjklzxcvbnm
+      - ConnectionStrings__UsersDb=Host=users-db:5432; Database=users-db; Username=postgres;Password=postgres
+      - IN_MEM_DB=false
     volumes:
       - ../source/users-server:/app/out
+
+  users-db:
+    image: postgres:14.5
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    volumes: 
+      - users-db:/var/lib/postgresql/data
+
+volumes:
+  users-db:
+    driver: local
+    
