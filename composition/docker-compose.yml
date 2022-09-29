@@ -2,6 +2,15 @@ version: "3.9"
 
 services:
   
+  dnevnik-web:
+    build: 
+      context: ../source/dnevnik-web
+      dockerfile: Dockerfile
+    volumes:
+      - ../source/dnevnik-web:/app
+    ports:
+      - '80:5173'
+  
   users-server:
     build: ../source/users-server
     ports:
