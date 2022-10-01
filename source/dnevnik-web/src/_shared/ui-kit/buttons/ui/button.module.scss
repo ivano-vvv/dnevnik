@@ -1,0 +1,23 @@
+.self {
+    padding: 13px 16px;
+    background-color: var(--primary);
+    color: var(--native);
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in;
+
+    &:hover {
+        background-color: #7FC9FF;
+    }
+
+    &:active {
+        background-color: var(--primary_contrast);
+    }
+
+    &:disabled {
+        background-color: var(--service_contrast);
+    }
+}
