@@ -1,7 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;800&display=swap');
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  font-family: 'Work Sans', sans-serif;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 32px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 28px;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 22px;
+}
+
+h4 {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+h5 {
+  font-weight: 800;
+  font-size: 12px;
 }
