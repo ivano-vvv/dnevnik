@@ -21,7 +21,7 @@
       "@widgets/*": ["./src/200_widgets/*"],
       "@pages/*": ["./src/300_pages/*"],
       "@composition/*": ["./src/400_composition/*"],
-      "@shared/*": ["./src/_shared"]
+      "@shared/*": ["./src/_shared/*"]
     }
   },
   "include": ["src"],
