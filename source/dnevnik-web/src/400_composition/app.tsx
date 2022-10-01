@@ -1,10 +1,11 @@
 import s from './styles/app.module.scss'
+import { params } from '../_shared/params';
 
 
 export function App() {
   return (
     <div className={s.app}>
-      hello world
+      url: { params.UsersURL }
     </div>
   )
 }

@@ -6,6 +6,8 @@ services:
     build: 
       context: ../source/dnevnik-web
       dockerfile: Dockerfile
+    environment:
+      - VITE_USERS_URL=users-server:8080
     volumes:
       - ../source/dnevnik-web:/app
     ports:
